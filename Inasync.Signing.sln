@@ -11,7 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inasync.Signing", "src\Inasync.Signing\Inasync.Signing.csproj", "{E92EE577-0E4E-4241-A5E4-BF5AA3669226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inasync.Signing", "src\Inasync.Signing\Inasync.Signing.csproj", "{E92EE577-0E4E-4241-A5E4-BF5AA3669226}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inasync.Signing.Tests", "tests\Inasync.Signing.Tests\Inasync.Signing.Tests.csproj", "{2EDEC31A-11C8-41DC-A27D-113F15C00AC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F961696B-9D41-4027-AF71-D6174E33DF93}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{74183AA7-1F60-4258-B1C2-38069D7D8DA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +29,17 @@ Global
 		{E92EE577-0E4E-4241-A5E4-BF5AA3669226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E92EE577-0E4E-4241-A5E4-BF5AA3669226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E92EE577-0E4E-4241-A5E4-BF5AA3669226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDEC31A-11C8-41DC-A27D-113F15C00AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDEC31A-11C8-41DC-A27D-113F15C00AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDEC31A-11C8-41DC-A27D-113F15C00AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDEC31A-11C8-41DC-A27D-113F15C00AC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E92EE577-0E4E-4241-A5E4-BF5AA3669226} = {F961696B-9D41-4027-AF71-D6174E33DF93}
+		{2EDEC31A-11C8-41DC-A27D-113F15C00AC7} = {74183AA7-1F60-4258-B1C2-38069D7D8DA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2CEC026A-54C0-4BAA-981E-D1DEBD2963A3}
