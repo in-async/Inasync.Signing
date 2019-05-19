@@ -1,7 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard1.3;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard1.3;net45</TargetFrameworks>
+    <AssemblyName>Inasync.Signing</AssemblyName>
+    <RootNamespace>Inasync.Signing</RootNamespace>
+    <Authors>inasync</Authors>
+    <Description></Description>
+    <PackageProjectUrl>https://github.com/in-async/Inasync.Signing</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/in-async/Inasync.Signing/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>security signing signature</PackageTags>
+    <Version>1.0.0</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
