@@ -3,9 +3,9 @@
 namespace Inasync.Signing {
 
     /// <summary>
-    /// 文字列の署名を生成するインターフェース。
+    /// テキストの署名を生成するインターフェース。
     /// </summary>
-    public interface IStringSigning {
+    public interface ITextSigning {
 
         /// <summary>
         /// 署名バージョン。

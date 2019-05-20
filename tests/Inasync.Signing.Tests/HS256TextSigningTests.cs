@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Inasync.Signing.Tests {
 
     [TestClass]
-    public class HS256SigningTests {
+    public class HS256TextSigningTests {
 
         [TestMethod]
         public void Ctor() {

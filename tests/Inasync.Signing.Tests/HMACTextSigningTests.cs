@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Inasync.Signing.Tests {
 
     [TestClass]
-    public class HMACSigningTests {
+    public class HMACTextSigningTests {
 
         [TestMethod]
         public void Ctor() {

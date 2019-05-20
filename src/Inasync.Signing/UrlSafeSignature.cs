@@ -13,7 +13,7 @@ namespace Inasync.Signing {
         /// <summary>
         /// <see cref="UrlSafeSignature"/> 構造体の新しいインスタンスを初期化します。
         /// </summary>
-        /// <param name="version"><see cref="UrlSafeSignature.Version"/> に渡される値。</param>
+        /// <param name="version"><see cref="Version"/> に渡される値。</param>
         /// <param name="hash">署名対象のハッシュ値。</param>
         public UrlSafeSignature(byte version, byte[] hash) {
             if (hash == null) { throw new ArgumentNullException(nameof(hash)); }
@@ -44,7 +44,7 @@ namespace Inasync.Signing {
             result = new UrlSafeSignature(signatureBytes, signature);
             return true;
 
-            Failure:
+Failure:
             result = default;
             return false;
         }

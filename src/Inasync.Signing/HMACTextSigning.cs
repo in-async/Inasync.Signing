@@ -5,29 +5,29 @@ using System.Text;
 namespace Inasync.Signing {
 
     /// <summary>
-    /// 文字列を <see cref="HMAC"/> で署名するサービス。
+    /// テキストを <see cref="HMAC"/> で署名するサービス。
     /// </summary>
-    public class HMACSigning : IStringSigning {
+    public class HMACTextSigning : ITextSigning {
         private readonly Func<HMAC> _hmacFactory;
 
         /// <summary>
-        /// <see cref="HMACSigning"/> クラスの新しいインスタンスを初期化します。
+        /// <see cref="HMACTextSigning"/> クラスの新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="hmacFactory">署名に使用する <see cref="HMAC"/> のファクトリー デリゲート。</param>
-        /// <param name="version"><see cref="HMACSigning.Version"/> に渡される値。</param>
+        /// <param name="version"><see cref="HMACTextSigning.Version"/> に渡される値。</param>
         /// <exception cref="ArgumentNullException"><paramref name="hmacFactory"/> is <c>null</c>.</exception>
-        public HMACSigning(Func<HMAC> hmacFactory, byte version) {
+        public HMACTextSigning(Func<HMAC> hmacFactory, byte version) {
             _hmacFactory = hmacFactory ?? throw new ArgumentNullException(nameof(hmacFactory));
             Version = version;
         }
 
         /// <summary>
-        /// <see cref="IStringSigning.Version"/> の実装。
+        /// <see cref="ITextSigning.Version"/> の実装。
         /// </summary>
         public byte Version { get; }
 
         /// <summary>
-        /// <see cref="IStringSigning.ComputeSignature(string)"/> の実装。
+        /// <see cref="ITextSigning.ComputeSignature(string)"/> の実装。
         /// </summary>
         /// <remarks>
         /// 署名スキームは以下の通り:
