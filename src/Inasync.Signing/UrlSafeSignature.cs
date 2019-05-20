@@ -7,6 +7,7 @@ namespace Inasync.Signing {
     /// 署名を表す構造体。
     /// </summary>
     public readonly struct UrlSafeSignature : IEquatable<UrlSafeSignature> {
+        private static readonly byte[] _emptyBytes = new byte[0];
         private readonly byte[] _signatureBytes;
         private readonly string _signature;
 
@@ -15,13 +16,14 @@ namespace Inasync.Signing {
         /// </summary>
         /// <param name="version"><see cref="Version"/> に渡される値。</param>
         /// <param name="hash">署名対象のハッシュ値。</param>
+        /// <exception cref="ArgumentNullException"><paramref name="hash"/> is <c>null</c>.</exception>
         public UrlSafeSignature(byte version, byte[] hash) {
             if (hash == null) { throw new ArgumentNullException(nameof(hash)); }
 
             Version = version;
             _signatureBytes = new byte[1 + hash.Length];
             _signatureBytes[0] = Version;
-            Buffer.BlockCopy(hash, 0, _signatureBytes, 1, 32);
+            Buffer.BlockCopy(hash, 0, _signatureBytes, 1, hash.Length);
             _signature = Base64Url.Encode(_signatureBytes);
         }
 
@@ -69,6 +71,8 @@ Failure:
         /// </summary>
         /// <returns>署名を表す <see cref="byte"/> 配列。常に非 <c>null</c>。</returns>
         public byte[] ToByteArray() {
+            if (_signatureBytes == null) { return _emptyBytes; }
+
             var bytes = new byte[_signatureBytes.Length];
             Buffer.BlockCopy(_signatureBytes, 0, bytes, 0, bytes.Length);
             return bytes;
@@ -78,7 +82,7 @@ Failure:
         /// 署名のバイナリ表現を base64url でエンコードした文字列を返します。
         /// </summary>
         /// <returns>署名文字列。URL Safe。常に非 <c>null</c>。</returns>
-        public override string ToString() => _signature;
+        public override string ToString() => _signature ?? "";
 
         /// <summary>
         /// <see cref="object.Equals(object)"/> の再実装。
@@ -92,6 +96,7 @@ Failure:
         /// <see cref="IEquatable{T}.Equals(T)"/> の実装。
         /// </summary>
         public bool Equals(UrlSafeSignature other) {
+            // HACK: バイナリ比較の方が速い？ 又は Span<byte> を使う？
             return _signature == other._signature;
         }
 
@@ -99,7 +104,8 @@ Failure:
         /// <see cref="object.GetHashCode"/> の再実装。
         /// </summary>
         public override int GetHashCode() {
-            return _signature.GetHashCode();
+            // HACK: FNV-1a ハッシュを実装する？
+            return ToString().GetHashCode();
         }
 
         /// <summary>
