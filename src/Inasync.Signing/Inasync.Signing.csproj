@@ -5,7 +5,7 @@
     <AssemblyName>Inasync.Signing</AssemblyName>
     <RootNamespace>Inasync.Signing</RootNamespace>
     <Authors>inasync</Authors>
-    <Description></Description>
+    <Description>A simple .NET library for versioned signatures.</Description>
     <PackageProjectUrl>https://github.com/in-async/Inasync.Signing</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/in-async/Inasync.Signing/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>security signing signature</PackageTags>
