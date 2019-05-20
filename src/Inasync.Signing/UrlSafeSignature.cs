@@ -34,11 +34,7 @@ namespace Inasync.Signing {
         public static bool TryParse(string signature, out UrlSafeSignature result) {
             if (signature == null) { goto Failure; }
 
-            byte[] signatureBytes;
-            try {
-                signatureBytes = Base64Url.Decode(signature);
-            }
-            catch (FormatException) { goto Failure; }
+            if (!Base64Url.TryDecode(signature, out var signatureBytes)) { goto Failure; }
             if (signatureBytes.Length == 0) { goto Failure; }
 
             result = new UrlSafeSignature(signatureBytes, signature);
