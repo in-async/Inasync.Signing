@@ -28,12 +28,12 @@ namespace Inasync.Signing.Tests {
 
         [TestMethod]
         public void TryParse() {
-            Action TestCase(int testNumber, string signature, (bool, UrlSafeSignature) expected) => () => {
+            Action TestCase(int testNumber, string signature, (bool success, UrlSafeSignature result) expected) => () => {
                 new TestCaseRunner($"No.{testNumber}")
-                    .Run(() => (UrlSafeSignature.TryParse(signature, out var result), result))
+                    .Run(() => (success: UrlSafeSignature.TryParse(signature, out var result), result))
                     .Verify((actual, desc) => {
-                        actual.Item1.Is(expected.Item1, desc);
-                        actual.Item2.Is(expected.Item2, desc);
+                        actual.success.Is(expected.success, desc);
+                        actual.result.Is(expected.result, desc);
                     }, (Type)null);
             };
 
