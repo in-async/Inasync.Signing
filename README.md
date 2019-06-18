@@ -14,26 +14,30 @@
 ## Usage
 ### Sign
 ```cs
-byte[] signKey = Binary.Parse("12BEF7DA731D6A1DB6F0AA98904E54FC9822A5592FBD8DAA1535C02153A34094D7B15A1ED31EF007DDDB0CD0F0728D4985D67775CAA31ECF5BD23B2CC4004614");
+byte[] signKey = Base16.Decode("12BEF7DA731D6A1DB6F0AA98904E54FC9822A5592FBD8DAA1535C02153A34094D7B15A1ED31EF007DDDB0CD0F0728D4985D67775CAA31ECF5BD23B2CC4004614");
 ITextSigning signing = new HS256TextSigning(signKey, version: 1);
-var message = "FOO";
 
+var message = "FOO";
 UrlSafeSignature signature = signing.ComputeSignature(message);
+
 Console.WriteLine(signature.ToString());  // Afh9IuBiL8HaPxiCrPLMC4vKgdWIqaeM-n0ke8H8KUjM
 ```
 
 ### Verify
 ```cs
-var message = "FOO";
-var signatureStr = "Afh9IuBiL8HaPxiCrPLMC4vKgdWIqaeM-n0ke8H8KUjM";
-Console.WriteLine(Verify());  // True
+byte[] signKey = Base16.Decode("12BEF7DA731D6A1DB6F0AA98904E54FC9822A5592FBD8DAA1535C02153A34094D7B15A1ED31EF007DDDB0CD0F0728D4985D67775CAA31ECF5BD23B2CC4004614");
+ITextSigning signing = new HS256TextSigning(signKey, version: 1);
 
-bool Verify() {
+var success = Verify(
+      message: "FOO"
+    , signatureStr: "Afh9IuBiL8HaPxiCrPLMC4vKgdWIqaeM-n0ke8H8KUjM"
+);
+
+Console.WriteLine(success);  // True
+
+bool Verify(string message, string signatureStr) {
     if (!UrlSafeSignature.TryParse(signatureStr, out var signature)) { return false; }
-    if (signature.Version != 1) { return false; }
 
-    byte[] signKey = Binary.Parse("12BEF7DA731D6A1DB6F0AA98904E54FC9822A5592FBD8DAA1535C02153A34094D7B15A1ED31EF007DDDB0CD0F0728D4985D67775CAA31ECF5BD23B2CC4004614");
-    ITextSigning signing = new HS256TextSigning(signKey, version: 1);
     UrlSafeSignature expected = signing.ComputeSignature(message);
     return signature == expected;
 }
